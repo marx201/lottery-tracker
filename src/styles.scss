@@ -2,3 +2,20 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  html,
+  body,
+  app-root {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+}
+
+
+$ask-category-stepper-background: #202124;
+$full-background: #202124;
+$app-blue: #3f51b5;

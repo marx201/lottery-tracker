@@ -1,0 +1,38 @@
+
+.header, .footer {
+  height: 10vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+app-background {
+  display: flex;
+  align-items: stretch;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+/* Logo upper left corner */
+.header img {
+  margin: 0 16px;
+}
+
+.nav-spacer {
+  flex: 1 1 auto;
+}
+
+.router-link-active {
+  background: white;
+
+  .material-icons {
+    color: black;
+  }
+}
+
