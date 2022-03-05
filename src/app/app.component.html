@@ -1,29 +1,24 @@
 <mat-toolbar color="primary" class="header">
 
+<!--  <mat-icon>arrow_back_ios</mat-icon>-->
+
   <img
     width="40"
     alt="Angular Logo"
     src="./assets/maxx_rl_logo.png"
   />
 
-  <span class="animated-title">Regarding food</span>
-  <span class="nav-spacer"></span>
-  <button routerLink="/pick-food" routerLinkActive="router-link-active" mat-icon-button
-          aria-label="Pick Food Icon">
-    <mat-icon>restaurant</mat-icon>
-  </button>
-  <button routerLink="/list-food" routerLinkActive="router-link-active" mat-icon-button
-          aria-label="List Food Icon">
-    <mat-icon>edit</mat-icon>
-  </button>
-  <button routerLink="/plan-food" routerLinkActive="router-link-active" mat-icon-button
-          aria-label="Plan Food Icon">
+
+  <span class="animated-title">Lottery Tracker</span>
+  <span class="spacer"></span>
+  <button routerLink="/history" routerLinkActive="router-link-active" mat-icon-button
+          aria-label="History Icon">
     <mat-icon>table</mat-icon>
   </button>
 </mat-toolbar>
 
 <div class="content" role="main">
-  <router-outlet #outlet="outlet"></router-outlet>
+  <router-outlet></router-outlet>
 </div>
 <app-background></app-background>
 

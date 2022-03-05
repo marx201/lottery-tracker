@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {RouterModule, Routes} from '@angular/router';
-import {AppComponent} from "./app.component";
+import {NgModule} from '@angular/core';
+import {Router, RouterModule, Routes} from '@angular/router';
+import {HistoryComponent} from './component/history/history.component';
+import {TrackerComponent} from "./component/tracker/tracker.component";
 
 const routes: Routes = [
-  { path: 'heroes', component: AppComponent }
+  {path: 'tracker', component: TrackerComponent},
+  {path: '', redirectTo: '/tracker', pathMatch: 'full'},
+  {path: 'history', component: HistoryComponent}
 ];
 
 @NgModule({
@@ -12,4 +14,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+
+}

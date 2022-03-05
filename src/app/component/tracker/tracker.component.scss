@@ -1,0 +1,27 @@
+h1 {
+  color: white;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+}
+
+.amount {
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  font-size: 25px;
+}
+
+
+.amount-wrapper {
+  transform: translate(0%, 0%);
+  padding: 25px;
+}
+
