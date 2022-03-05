@@ -1,0 +1,43 @@
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.mat-column-name {
+  word-wrap: break-word;
+  width: calc(100% - 25px);
+  color: white;
+}
+
+.mat-column-category {
+  width: 100px;
+  color: white;
+}
+
+.mat-column-action {
+  width: 60px;
+  color: white;
+}
+
+table {
+  background-color: #202124;
+  width: 90vw;
+}
+
+.food-list-table {
+  height: 55vh;;
+  overflow-y: auto;
+  border: 1px solid black;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .food-list-table {
+    height: 50vh;;
+  }
+}

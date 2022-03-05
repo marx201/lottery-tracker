@@ -105,6 +105,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "lottery-tracker:build:production",
+            "firebaseProject": "lottery-track",
+            "firebaseHostingSite": "lottery-track"
+          }
         }
       }
     }

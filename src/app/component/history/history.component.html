@@ -1,1 +1,41 @@
-<p>history works!</p>
+<div class="food-list-table">
+  <table matSort #sortEntries="matSort" mat-table [dataSource]="dataSource">
+
+    <!-- Created Column -->
+    <ng-container matColumnDef="created">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Cost Column -->
+    <ng-container matColumnDef="cost">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost</th>
+      <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+    </ng-container>
+
+    <!-- Earning Column -->
+    <ng-container matColumnDef="earning">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Earning</th>
+      <td mat-cell *matCellDef="let element"> {{element.earning}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action</th>
+      <td mat-cell *matCellDef="let element" class="action-link">
+        <a (click)="openDialog('Update',element)">
+          <mat-icon>edit</mat-icon>
+        </a> |
+        <a (click)="openDialog('Delete',element)">
+          <mat-icon>delete</mat-icon>
+        </a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row [style.background-color]="tableHeaderRowColor"
+        *matHeaderRowDef="displayedColumns, sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+

@@ -11,13 +11,26 @@ import { TrackerComponent } from './component/tracker/tracker.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { HistoryComponent } from './component/history/history.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { DialogEntryComponent } from './component/dialog-entry/dialog-entry.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {FormsModule} from "@angular/forms";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatInputModule} from "@angular/material/input";
+import {MatSortModule} from "@angular/material/sort";
+import {MatTableModule} from "@angular/material/table";
+import {AngularFireModule} from "@angular/fire/compat";
 
 @NgModule({
   declarations: [
     AppComponent,
     BackgroundComponent,
     TrackerComponent,
-    HistoryComponent
+    HistoryComponent,
+    DialogEntryComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +39,17 @@ import { HistoryComponent } from './component/history/history.component';
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+    MatFormFieldModule,
+    MatSelectModule,
+    FormsModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSortModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,14 @@
 {
   "projects": {
-    "default": "lottery-tracker-700e4"
+    "default": "lottery-track"
+  },
+  "targets": {
+    "lottery-track": {
+      "hosting": {
+        "lottery-tracker": [
+          "lottery-track"
+        ]
+      }
+    }
   }
 }
