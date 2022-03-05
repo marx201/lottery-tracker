@@ -15,13 +15,12 @@ export class HistoryComponent implements OnInit, AfterViewInit  {
 
   entries: Entry[] = [];
   addButtonTitle = "Add";
-  displayedColumns: string[] = ['created', 'cost', 'earning'];
-  tableHeaderRowColor = "#3f51b5";
+  displayedColumns: string[] = ['created', 'cost', 'earning', 'action'];
+  tableHeaderRowColor = "#c2185b";
   dataSource = new MatTableDataSource();
   // @ts-ignore
   @ViewChild(MatTable, {static: true}) table: MatTable<any>;
   @ViewChild('sortEntries') sortEntries = new MatSort();
-
 
   constructor(
     public dialog: MatDialog,
@@ -36,6 +35,7 @@ export class HistoryComponent implements OnInit, AfterViewInit  {
     this.firestoreService.getEntries().subscribe((entries: Entry[]) => {
       this.entries = entries;
       this.dataSource.data = entries;
+      console.log(entries);
     })
   }
 
@@ -61,7 +61,7 @@ export class HistoryComponent implements OnInit, AfterViewInit  {
     const entry = {
       cost: row_obj.name,
       earning: row_obj.category,
-      created: new Date()
+      created: Date.now()
     }
     this.firestoreService.addEntry(entry).then(value => {
       console.log("Successfully added entry: ", value);

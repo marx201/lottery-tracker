@@ -1,12 +1,12 @@
 export interface Entry {
   id?: number,
-  created: Date,
+  created: number,
   cost: number,
   earning: number
 }
 
 export interface Summary {
   total: number,
-  totalBought: number,
+  totalCost: number,
   totalEarning: number
 }

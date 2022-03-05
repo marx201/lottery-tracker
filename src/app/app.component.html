@@ -1,7 +1,5 @@
 <mat-toolbar color="primary" class="header">
 
-<!--  <mat-icon>arrow_back_ios</mat-icon>-->
-
   <img
     width="40"
     alt="Angular Logo"
@@ -11,6 +9,10 @@
 
   <span class="animated-title">Lottery Tracker</span>
   <span class="spacer"></span>
+  <button routerLink="/tracker" routerLinkActive="router-link-active" mat-icon-button
+          aria-label="Tracker Icon">
+    <mat-icon>track_changes</mat-icon>
+  </button>
   <button routerLink="/history" routerLinkActive="router-link-active" mat-icon-button
           aria-label="History Icon">
     <mat-icon>table</mat-icon>
