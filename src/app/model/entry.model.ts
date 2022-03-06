@@ -8,5 +8,6 @@ export interface Entry {
 export interface Summary {
   total: number,
   totalCost: number,
-  totalEarning: number
+  totalEarning: number,
+  totalEarningPercentage?: number
 }

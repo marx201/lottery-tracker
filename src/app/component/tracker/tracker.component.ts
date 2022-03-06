@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {DialogEntryComponent} from "../dialog-entry/dialog-entry.component";
 import {Entry, Summary} from "../../model/entry.model";
 import {TrackerService} from "../../service/tracker.service";
+import {Color, LegendPosition, ScaleType} from "@swimlane/ngx-charts";
 
 @Component({
   selector: 'app-tracker',
@@ -15,14 +16,40 @@ import {TrackerService} from "../../service/tracker.service";
 export class TrackerComponent implements OnInit {
 
 
-  color: ThemePalette = 'primary';
-  mode: ProgressSpinnerMode = 'determinate';
+  // @ts-ignore
+  chartElements = [
+    {
+      "name": "Expenses",
+      "value": 0
+    },
+    {
+      "name": "Earnings",
+      "value": 0
+    }
+  ];
+
+
+  view = [700, 400];
+  // options
+  gradient: boolean = false;
+  showLegend: boolean = false;
+  showLabels: boolean = false;
+  isDoughnut: boolean = true;
+  legendPosition = LegendPosition.Below;
+  hasEarning = false;
+  colorScheme: Color = {
+    group: ScaleType.Linear, name: "test", selectable: true,
+    domain: ['#A10A28', '#5AA454']
+  };
+
+  showChart = false;
   entries: Entry[] = [];
 
   summary: Summary = {
     total: 0,
     totalCost: 0,
-    totalEarning: 0
+    totalEarning: 0,
+    totalEarningPercentage: 0
   }
 
   constructor(
@@ -34,16 +61,42 @@ export class TrackerComponent implements OnInit {
   ngOnInit(): void {
     this.firestoreService.getEntries().subscribe((entries: Entry[]) => {
       this.entries = entries;
-      this.trackerService.calculateSummary(entries).then(summary => {
-        console.log(summary, "Summary");
-        this.summary = summary;
-      })
+      this.calculateSummaryAndSetChart(entries);
     })
 
 
   }
 
+  private calculateSummaryAndSetChart(entries: Entry[]): void {
+    this.trackerService.calculateSummary(entries).then(summary => {
+      console.log(summary, "Summary");
+      this.summary = summary;
+      if (summary.totalCost >= summary.totalEarning) {
+        this.chartElements[1].value = 0;
+      } else {
+        this.chartElements[1].value = this.summary.totalEarning;
+      }
+      this.chartElements[0].value = this.summary.totalCost;
+
+      this.showChart = true;
+      this.hasEarning = this.getEarning();
+    })
+  }
+
+  onSelect(data: any): void {
+    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+  }
+
+  onActivate(data: any): void {
+    console.log('Activate', JSON.parse(JSON.stringify(data)));
+  }
+
+  onDeactivate(data: any): void {
+    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+  }
+
   enterResult(): void {
+    this.showChart = false;
     this.openDialog('Add', {})
   }
 
@@ -65,50 +118,12 @@ export class TrackerComponent implements OnInit {
         this.firestoreService.addEntry(entry).then(value => {
           console.log("Successfully added entry: ", value);
           this.entries.push(entry);
-        })
-      } else if (result.event == 'Update') {
-        this.updateRowData(result.data);
-      } else if (result.event == 'Delete') {
-        this.deleteRowData(result.data);
-      }
-    });
-  }
-
-  addRowData(row_obj: any) {
-    const entry = {
-      cost: row_obj.name,
-      earning: row_obj.category,
-      created: Date.now()
-    }
-    this.firestoreService.addEntry(entry).then(value => {
-      console.log("Successfully added entry: ", value);
-      this.entries.push(entry);
-    })
-  }
-
-  updateRowData(row_obj: any) {
-    this.entries = this.entries.filter((value, key) => {
-      if (value.id == row_obj.id) {
-        value.cost = row_obj.cost;
-        value.earning = row_obj.earning;
-        value.created = row_obj.created;
-      }
-      this.firestoreService.updateEntry(value).then(value1 => {
-        console.log("successfully updated");
-        return true;
-      })
-    });
-  }
-
-  deleteRowData(row_obj: any) {
-    this.entries = this.entries.filter((entryToRemove, key) => {
-      if (entryToRemove.id === row_obj.id) {
-        this.firestoreService.deleteEntry(entryToRemove).then(value => {
-          console.log("Succesfully deleted, ", value);
+          this.calculateSummaryAndSetChart(this.entries)
         })
       }
-      return entryToRemove.id != row_obj.id;
     });
   }
-
+public getEarning(): boolean{
+    return this.summary.totalEarning > this.summary.totalCost;
+}
 }

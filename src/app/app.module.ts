@@ -23,6 +23,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSortModule} from "@angular/material/sort";
 import {MatTableModule} from "@angular/material/table";
 import {AngularFireModule} from "@angular/fire/compat";
+import {PieChartModule} from "@swimlane/ngx-charts";
 
 @NgModule({
   declarations: [
@@ -32,25 +33,26 @@ import {AngularFireModule} from "@angular/fire/compat";
     HistoryComponent,
     DialogEntryComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
-    MatFormFieldModule,
-    MatSelectModule,
-    FormsModule,
-    MatDialogModule,
-    MatInputModule,
-    MatSortModule,
-    MatTableModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatProgressSpinnerModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideFirestore(() => getFirestore()),
+        MatFormFieldModule,
+        MatSelectModule,
+        FormsModule,
+        MatDialogModule,
+        MatInputModule,
+        MatSortModule,
+        MatTableModule,
+        PieChartModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

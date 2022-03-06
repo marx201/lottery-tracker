@@ -2,16 +2,36 @@
   <h1>Total</h1>
 </div>
 
+<!--
 <div class="amount-wrapper">
   <mat-progress-spinner
     class="amount-spinner"
     [color]="color"
     [mode]="mode"
-    [value]="">
+    [value]="summary.totalEarningPercentage">
   </mat-progress-spinner>
-  <div class="amount">{{summary.total}}</div>
-</div>
 
+</div>
+-->
+
+<div class="amount-wrapper">
+<ngx-charts-pie-chart *ngIf="showChart"
+  [scheme]="colorScheme"
+  [results]="chartElements"
+  [gradient]="gradient"
+  [legend]="showLegend"
+  [legendPosition]="legendPosition"
+  [labels]="showLabels"
+  [doughnut]="isDoughnut"
+  (select)="onSelect($event)"
+  (activate)="onActivate($event)"
+  (deactivate)="onDeactivate($event)"
+>
+
+</ngx-charts-pie-chart>
+<div [ngClass]="{'has-earning-color': hasEarning}" class="amount">{{summary.total | number:'1.0-2'}} €</div>
+<!--  <div class="earning-ratio">{{summary.totalEarningPercentage | number:'2.1-2'}} %</div>-->
+</div>
 <div class="button-bar">
   <button (click)="enterResult()" mat-raised-button class="win-button">Add Result</button>
 </div>

@@ -10,13 +10,28 @@ h1 {
 }
 
 .amount {
-  color: white;
+  color: red;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   padding: 10px;
   font-size: 25px;
+}
+.earning-ratio{
+  color: green;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 5%);
+  padding: 10px;
+  font-size: 12px;
+  font-weight:bold;
+
+}
+
+.has-earning-color{
+  color:green;
 }
 
 
