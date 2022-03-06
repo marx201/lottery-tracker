@@ -121,6 +121,7 @@ export class TrackerComponent implements OnInit {
           this.calculateSummaryAndSetChart(this.entries)
         })
       }
+      this.showChart = true;
     });
   }
 public getEarning(): boolean{
