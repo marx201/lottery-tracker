@@ -78,7 +78,12 @@ export class TrackerComponent implements OnInit {
       }
       this.chartElements[0].value = this.summary.totalCost;
 
-      this.showChart = true;
+      console.log("chartelement 0",this.chartElements[0].value);
+      console.log("chartelement 1",this.chartElements[1].value);
+
+      setTimeout(() => {
+        this.showChart = true;
+      }, 300);
       this.hasEarning = this.getEarning();
     })
   }
@@ -120,8 +125,10 @@ export class TrackerComponent implements OnInit {
           this.entries.push(entry);
           this.calculateSummaryAndSetChart(this.entries)
         })
+      } else{
+        this.showChart = true;
       }
-      this.showChart = true;
+
     });
   }
 public getEarning(): boolean{

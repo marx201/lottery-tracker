@@ -15,7 +15,7 @@ export class DialogEntryComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DialogEntryComponent>,
-    //@Optional() is used to prevent error if no data is passed
+
     @Optional() @Inject(MAT_DIALOG_DATA) public data: Entry) {
     this.local_data = {...data};
     this.action = this.local_data.action;
